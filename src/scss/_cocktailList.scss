@@ -1,0 +1,19 @@
+// .cocktails {
+//   flex-wrap: wrap;
+// }
+
+.card {
+  min-width: 300px;
+  box-shadow: var(--bs);
+}
+
+.card-deck .card {
+  margin-bottom: 2rem;
+}
+
+.card__badge {
+  background: var(--clr-brightCyan);
+  margin: 0.2rem;
+  color: white;
+  font-size: var(--fs-sm);
+}

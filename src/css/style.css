@@ -1,0 +1,121 @@
+:root {
+  --clr-bg: hsl(0, 0%, 100%);
+  --clr-contrast-lower: hsl(0, 0%, 95%);
+  --clr-contrast-low: hsl(0, 0, 83%);
+  --clr-contrast-md: hsl(0, 0, 48%);
+  --clr-contrast-high: hsl(240, 4%, 20%);
+  --clr-contrast-higher: hsl(240, 8%, 12%);
+  --clr-darkBlue: hsl(233, 26%, 24%);
+  --clr-limeGreen: hsl(136, 65%, 51%);
+  --clr-brightCyan: hsl(192, 70%, 51%);
+  --clr-grayishBlue: hsl(233, 8%, 62%);
+  --fs-h1: 3rem;
+  --fs-h2: 2.25rem;
+  --fs-h3: 1.25rem;
+  --fs-body: 1rem;
+  --fs-sm: 0.875rem;
+  --bs: 0.25em 0.25em 0.75em rgba(0, 0, 0, 0.25),
+    0.125em 0.125em 0.25em rgba(0, 0, 0, 0.15);
+  --fw-reg: 300;
+  --fw-bold: 700;
+}
+
+html {
+  font-size: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@media (min-width: 800px) {
+  :root {
+    --fs-h1: 4.5rem;
+    --fs-h2: 3.75rem;
+    --fs-h3: 1.5rem;
+    --fs-body: 1.125rem;
+  }
+}
+
+body {
+  background: var(--clr-light);
+  color: var(--clr-dark);
+  margin: 0;
+  font-family: var(--ff-primary);
+}
+
+section {
+  padding: 2em 2rem;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+strong {
+  font-weight: var(--fw-bold);
+}
+
+:focus,
+input:focus {
+  border: none;
+  outline: 3px solid var(--clr-brightCyan) !important;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex-jc-sb {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.flex-jc-c {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.flex-ai-c {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar {
+  border-bottom: 1px solid var(--clr-brightCyan);
+  -webkit-box-shadow: var(--bs);
+          box-shadow: var(--bs);
+}
+
+.form__label {
+  text-align: center !important;
+}
+
+.card {
+  min-width: 300px;
+  -webkit-box-shadow: var(--bs);
+          box-shadow: var(--bs);
+}
+
+.card-deck .card {
+  margin-bottom: 2rem;
+}
+
+.card__badge {
+  background: var(--clr-brightCyan);
+  margin: 0.2rem;
+  color: white;
+  font-size: var(--fs-sm);
+}
+/*# sourceMappingURL=style.css.map */
