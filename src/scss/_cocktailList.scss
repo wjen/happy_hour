@@ -9,11 +9,8 @@
 
 .card-deck .card {
   margin-bottom: 2rem;
-}
 
-.card__badge {
-  background: var(--clr-brightCyan);
-  margin: 0.2rem;
-  color: white;
-  font-size: var(--fs-sm);
+  @include breakpoint-down(xsmall) {
+    margin: 2rem;
+  }
 }

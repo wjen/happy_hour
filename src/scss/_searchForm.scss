@@ -1,3 +1,5 @@
-.form__label {
-  text-align: center !important;
+@include breakpoint-down(xsmall) {
+  .form {
+    margin: 0 2rem;
+  }
 }
