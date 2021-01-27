@@ -1,22 +1,16 @@
 import React from 'react';
 import Cocktail from '../components/Cocktail';
-import { useGlobalContext } from '../context';
+import { useGlobalContext } from '../context/context';
+import Loading from '../components/Loading';
 
 function CocktailsList() {
   const { drinksList, isLoading } = useGlobalContext();
-  console.log(drinksList);
   if (isLoading) {
-    return (
-      <div class="text-center">
-        <div class="spinner-border text-info" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
   return (
     <section className="container">
-      <h1 className="text-center mb-3 display-4">
+      <h1 className="mb-3 h3">
         {drinksList.length < 1 ? 'No matches...' : 'Cocktail List'}
       </h1>
       <div className="card-deck ">

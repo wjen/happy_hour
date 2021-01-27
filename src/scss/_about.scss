@@ -1,0 +1,14 @@
+.about {
+  &__text {
+    line-height: 2;
+    letter-spacing: 0.2rem;
+  }
+  .container {
+    background-color: var(--clr-bg);
+    padding: 3rem 2rem;
+    max-width: 800px;
+    box-shadow: var(--bs);
+    border-radius: 0.25rem;
+    letter-spacing: 0.5rem;
+  }
+}

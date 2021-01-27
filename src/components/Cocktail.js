@@ -33,7 +33,7 @@ function Cocktail({ id, name, image, ingredients, info, glass }) {
         <h5 className="card-title">{name}</h5>
         <div>
           {ingredients.map((ingredient, idx) => (
-            <span key={idx} className="badge badge-pill card__badge">
+            <span key={idx} className="badge badge-pill badge-info card__badge">
               {ingredient}
             </span>
           ))}

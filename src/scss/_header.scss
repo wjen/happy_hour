@@ -1,32 +1,32 @@
 .navbar {
   border-bottom: 1px solid var(--clr-brightCyan);
   box-shadow: var(--bs);
-}
 
-.nav-link,
-.navbar-brand {
-  position: relative;
+  .nav-link,
+  &-brand {
+    position: relative;
 
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    height: 5px;
-    left: 0;
-    right: 0;
-    bottom: -10px;
-    background: linear-gradient(
-      to right,
-      var(--clr-limeGreen),
-      var(--clr-brightCyan)
-    );
-    opacity: 0;
-    transition: opacity 300ms ease-in-out;
-  }
-
-  &:hover {
     &::before {
-      opacity: 1;
+      content: '';
+      display: block;
+      position: absolute;
+      height: 5px;
+      left: 0;
+      right: 0;
+      bottom: -10px;
+      background: linear-gradient(
+        to right,
+        var(--clr-limeGreen),
+        var(--clr-brightCyan)
+      );
+      opacity: 0;
+      transition: opacity 300ms ease-in-out;
+    }
+
+    &:hover {
+      &::before {
+        opacity: 1;
+      }
     }
   }
 }

@@ -1,49 +1,41 @@
 import React, { useState } from 'react';
-import { register } from '../services/auth.service';
+import { login } from '../services/auth.service';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../components/MyTextInput';
 
-const Register = (props) => {
+const Login = (props) => {
   const [message, setMessage] = useState('');
-  const [successful, setSuccessful] = useState(false);
-
   return (
     <section className="register">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-9">
-            <h1 className="text-center mb-3">Register</h1>
+            <h1 className="text-center mb-3">Login</h1>
             <Formik
-              initialValues={{ username: '', email: '', password: '' }}
+              initialValues={{ username: '', password: '' }}
               validationSchema={Yup.object({
                 username: Yup.string()
                   .max(15, 'Must be 15 characters or less')
-                  .required('Required'),
-                email: Yup.string()
-                  .max(40, 'Must be no more than 40 characters')
                   .required('Required'),
                 password: Yup.string()
                   .max(20, 'Must be no more than 20 characters')
                   .required('Required'),
               })}
               onSubmit={(values, { setSubmitting }) => {
-                register(values.username, values.email, values.password).then(
-                  (response) => {
-                    console.log(response);
-                    setSubmitting(false);
-                    setSuccessful(true);
-                    setMessage(response.data.message);
+                login(values.username, values.password).then(
+                  () => {
+                    props.history.push('/');
+                    window.location.reload();
                   },
                   (error) => {
-                    console.log(error.response.data.message);
                     const resMessage =
                       error.response &&
                       error.response.data &&
                       error.response.data.message;
 
                     setSubmitting(false);
-                    setSuccessful(false);
+
                     setMessage(resMessage);
                   }
                 );
@@ -51,20 +43,14 @@ const Register = (props) => {
             >
               <Form>
                 {message && (
-                  <div
-                    className={
-                      successful ? 'alert alert-success' : 'alert alert-danger'
-                    }
-                    role="alert"
-                  >
+                  <div className="alert alert-danger mt-3" role="alert">
                     {message}
                   </div>
                 )}
                 <MyTextInput label="Username" name="username" type="text" />
-                <MyTextInput label="Email" name="email" type="email" />
                 <MyTextInput label="Password" name="password" type="text" />
                 <button type="submit" className="btn btn-info">
-                  Register
+                  Login
                 </button>
               </Form>
             </Formik>
@@ -74,5 +60,4 @@ const Register = (props) => {
     </section>
   );
 };
-
-export default Register;
+export default Login;

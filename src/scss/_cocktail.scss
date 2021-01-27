@@ -1,4 +1,14 @@
+.card-deck .card {
+  margin-bottom: 2rem;
+}
+
 .card {
+  min-width: 300px;
+  box-shadow: var(--bs);
+
+  @include breakpoint-up(medium) {
+    max-width: 50%;
+  }
   .show-modal {
     opacity: 1;
     z-index: 10;
@@ -30,9 +40,41 @@
   }
 
   &__badge {
-    background: var(--clr-brightCyan);
     margin-right: 0.2rem;
     color: white;
     font-size: var(--fs-sm);
   }
 }
+
+// Single page
+
+.details {
+  background-color: var(--clr-bg);
+  margin: 2rem;
+  font-size: var(--fs-body);
+  box-shadow: var(--bs);
+
+  &__img-container {
+    margin-bottom: 1rem;
+  }
+
+  &__ingredients {
+  }
+  &__subtitle {
+    font-size: var(--fs-h3);
+  }
+  &__videos-container {
+    display: flex;
+  }
+  &__videos {
+  }
+  .drink-data {
+    background: var(--clr-brightCyan);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.2rem;
+    color: var(--clr-bg);
+    margin-right: 1rem;
+  }
+}
+
+// Cocktail List Section

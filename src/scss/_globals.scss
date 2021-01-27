@@ -11,21 +11,22 @@ html {
 
 @media (min-width: 800px) {
   :root {
-    --fs-h1: 4.5rem;
-    --fs-h2: 3.75rem;
+    --fs-h1: 3rem;
+    --fs-h2: 2.25rem;
     --fs-h3: 1.5rem;
     --fs-body: 1.125rem;
   }
 }
 
 body {
-  background: var(--clr-light);
-  color: var(--clr-dark);
+  background: var(--clr-contrast-lower);
+  color: var(--clr-darkBlue);
   margin: 0;
   font-family: var(--ff-primary);
 }
 
 section {
+  // background-color: var(--clr-bg);
   padding: 2em 2rem;
 }
 
@@ -44,6 +45,26 @@ input:focus {
   outline: 3px solid var(--clr-brightCyan) !important ;
 }
 
+// Typography
+
+/* Typography */
+h1,
+h2,
+h3 {
+  line-height: 1;
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+}
+h2 {
+  font-size: var(--fs-h2);
+}
+h3 {
+  font-size: var(--fs-h3);
+}
+
 // Flexbox
 .flex {
   display: flex;
@@ -59,4 +80,12 @@ input:focus {
   &-ai-c {
     align-items: center;
   }
+}
+
+// About
+.about__text {
+  margin: 0 auto;
+  max-width: 600px;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
 }

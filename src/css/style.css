@@ -1,16 +1,16 @@
 :root {
   --clr-bg: hsl(0, 0%, 100%);
-  --clr-contrast-lower: hsl(0, 0%, 95%);
-  --clr-contrast-low: hsl(0, 0, 83%);
-  --clr-contrast-md: hsl(0, 0, 48%);
+  --clr-contrast-lower: hsl(0, 0%, 93%);
+  --clr-contrast-low: hsl(0, 0%, 83%);
+  --clr-contrast-md: hsl(0, 0%, 48%);
   --clr-contrast-high: hsl(240, 4%, 20%);
   --clr-contrast-higher: hsl(240, 8%, 12%);
   --clr-darkBlue: hsl(233, 26%, 24%);
   --clr-limeGreen: hsl(136, 65%, 51%);
   --clr-brightCyan: hsl(192, 70%, 51%);
   --clr-grayishBlue: hsl(233, 8%, 62%);
-  --fs-h1: 3rem;
-  --fs-h2: 2.25rem;
+  --fs-h1: 2.75rem;
+  --fs-h2: 2rem;
   --fs-h3: 1.25rem;
   --fs-body: 1rem;
   --fs-sm: 0.875rem;
@@ -35,16 +35,16 @@ html {
 
 @media (min-width: 800px) {
   :root {
-    --fs-h1: 4.5rem;
-    --fs-h2: 3.75rem;
+    --fs-h1: 3rem;
+    --fs-h2: 2.25rem;
     --fs-h3: 1.5rem;
     --fs-body: 1.125rem;
   }
 }
 
 body {
-  background: var(--clr-light);
-  color: var(--clr-dark);
+  background: var(--clr-contrast-lower);
+  color: var(--clr-darkBlue);
   margin: 0;
   font-family: var(--ff-primary);
 }
@@ -66,6 +66,26 @@ strong {
 input:focus {
   border: none;
   outline: 3px solid var(--clr-brightCyan) !important;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  line-height: 1;
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
 }
 
 .flex {
@@ -92,19 +112,24 @@ input:focus {
           align-items: center;
 }
 
+.about__text {
+  margin: 0 auto;
+  max-width: 600px;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
+}
+
 .navbar {
   border-bottom: 1px solid var(--clr-brightCyan);
   -webkit-box-shadow: var(--bs);
           box-shadow: var(--bs);
 }
 
-.nav-link,
-.navbar-brand {
+.navbar .nav-link, .navbar-brand {
   position: relative;
 }
 
-.nav-link::before,
-.navbar-brand::before {
+.navbar .nav-link::before, .navbar-brand::before {
   content: '';
   display: block;
   position: absolute;
@@ -119,9 +144,18 @@ input:focus {
   transition: opacity 300ms ease-in-out;
 }
 
-.nav-link:hover::before,
-.navbar-brand:hover::before {
+.navbar .nav-link:hover::before, .navbar-brand:hover::before {
   opacity: 1;
+}
+
+.search {
+  background-color: var(--clr-bg);
+  border-radius: 0.25rem;
+  margin-top: 2rem;
+  -webkit-box-shadow: var(--bs);
+          box-shadow: var(--bs);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (max-width: 35.9375rem) {
@@ -130,19 +164,19 @@ input:focus {
   }
 }
 
+.card-deck .card {
+  margin-bottom: 2rem;
+}
+
 .card {
   min-width: 300px;
   -webkit-box-shadow: var(--bs);
           box-shadow: var(--bs);
 }
 
-.card-deck .card {
-  margin-bottom: 2rem;
-}
-
-@media (max-width: 35.9375rem) {
-  .card-deck .card {
-    margin: 2rem;
+@media (min-width: 48rem) {
+  .card {
+    max-width: 50%;
   }
 }
 
@@ -187,9 +221,71 @@ input:focus {
 }
 
 .card__badge {
-  background: var(--clr-brightCyan);
   margin-right: 0.2rem;
   color: white;
   font-size: var(--fs-sm);
+}
+
+.details {
+  background-color: var(--clr-bg);
+  margin: 2rem;
+  font-size: var(--fs-body);
+  -webkit-box-shadow: var(--bs);
+          box-shadow: var(--bs);
+}
+
+.details__img-container {
+  margin-bottom: 1rem;
+}
+
+.details__subtitle {
+  font-size: var(--fs-h3);
+}
+
+.details__videos-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.details .drink-data {
+  background: var(--clr-brightCyan);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.2rem;
+  color: var(--clr-bg);
+  margin-right: 1rem;
+}
+
+.profile .container {
+  background-color: var(--clr-bg);
+  padding: 3rem 2rem;
+  max-width: 800px;
+  -webkit-box-shadow: var(--bs);
+          box-shadow: var(--bs);
+  border-radius: 0.25rem;
+}
+
+.register .container {
+  background-color: var(--clr-bg);
+  padding: 3rem 2rem;
+  max-width: 800px;
+  -webkit-box-shadow: var(--bs);
+          box-shadow: var(--bs);
+  border-radius: 0.25rem;
+}
+
+.about__text {
+  line-height: 2;
+  letter-spacing: 0.2rem;
+}
+
+.about .container {
+  background-color: var(--clr-bg);
+  padding: 3rem 2rem;
+  max-width: 800px;
+  -webkit-box-shadow: var(--bs);
+          box-shadow: var(--bs);
+  border-radius: 0.25rem;
+  letter-spacing: 0.5rem;
 }
 /*# sourceMappingURL=style.css.map */
