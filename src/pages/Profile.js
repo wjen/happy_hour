@@ -1,13 +1,15 @@
-import React from 'react';
-import { getCurrentUser } from '../services/auth.service';
+import React, { useContext } from 'react';
+import { AuthContext } from '../context/auth.context';
 
 const Profile = () => {
-  const currentUser = getCurrentUser();
-  console.log(currentUser);
+  const { user } = useContext(AuthContext);
+  // const currentUser = getCurrentUser();
+  const currentUser = user;
+  console.log(user);
   return (
     <section className="profile">
       <div className="container">
-        <h1 className="text-center mb-3">Profile</h1>
+        <h1 className="text-center mb-3">Profile </h1>
         <table className="table">
           <tbody>
             <tr>

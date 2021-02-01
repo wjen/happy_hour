@@ -9,7 +9,7 @@ import Login from './pages/Login';
 import SingleDrink from './pages/SingleDrink';
 import Profile from './pages/Profile';
 import Users from './pages/Users';
-import AuthRoute from './util/AuthRoute';
+import { AuthRoute, PrivateRoutes } from './util/AuthRoute';
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
         <AuthRoute path="/register" component={Register} />
         <AuthRoute path="/login" component={Login} />
 
-        <Route path="/profile" component={Profile} />
+        <PrivateRoutes path="/profile" component={Profile} />
         <Route path="/admin/users" component={Users}></Route>
         <Route path="*" component={Error}></Route>
       </Switch>

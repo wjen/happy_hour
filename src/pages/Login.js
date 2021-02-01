@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { login } from '../services/auth.service';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../context/auth.context';
+
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../components/MyTextInput';
 
 const Login = (props) => {
   const [message, setMessage] = useState('');
+  const { login } = useContext(AuthContext);
   return (
     <section className="register">
       <div className="container">
@@ -24,9 +26,8 @@ const Login = (props) => {
               })}
               onSubmit={(values, { setSubmitting }) => {
                 login(values.username, values.password).then(
-                  () => {
+                  (response) => {
                     props.history.push('/');
-                    window.location.reload();
                   },
                   (error) => {
                     const resMessage =

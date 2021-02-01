@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { logOut, getCurrentUser } from '../services/auth.service';
+
+import { AuthContext } from '../context/auth.context';
+
 function Navbar() {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
-  const [currentUser, setCurrentUser] = useState('');
+  const { logOut, user } = useContext(AuthContext);
 
   useEffect(() => {
-    const user = getCurrentUser();
-
     if (user) {
-      setCurrentUser(user);
       setShowAdminBoard(user.roles.includes('ROLE_ADMIN'));
     }
-  }, []);
+  }, [user]);
 
   const logOutHandler = () => {
     logOut();
@@ -52,7 +51,7 @@ function Navbar() {
                   </li>
                 </>
               )}
-              {currentUser ? (
+              {user ? (
                 <>
                   <li className="nav-item">
                     <Link to="/profile" className="nav-link">

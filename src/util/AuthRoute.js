@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { getCurrentUser } from '../services/auth.service';
+import { AuthContext } from '../context/auth.context';
 
 function AuthRoute({ component: Component, ...rest }) {
-  const user = getCurrentUser();
+  const { user } = useContext(AuthContext);
+
   return (
     <Route
       {...rest}
@@ -14,4 +15,25 @@ function AuthRoute({ component: Component, ...rest }) {
   );
 }
 
-export default AuthRoute;
+const PrivateRoutes = ({ component: Component, ...rest }) => {
+  var session_token = localStorage.getItem('token');
+
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        session_token !== null ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/login',
+              state: { from: props.location },
+            }}
+          />
+        )
+      }
+    />
+  );
+};
+export { AuthRoute, PrivateRoutes };

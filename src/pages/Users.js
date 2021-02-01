@@ -47,14 +47,14 @@ const Users = () => {
           <tbody>
             {users.map((user, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <th scope="row">{index + 1}</th>
                   <td>{user.username}</td>
                   <td>{user.email}</td>
                   <td>{user._id}</td>
                   <td>
                     {user.roles.map((role, index) => (
-                      <span>
+                      <span key={index}>
                         {(index ? ', ' : '') + role.name.toUpperCase()}
                       </span>
                     ))}

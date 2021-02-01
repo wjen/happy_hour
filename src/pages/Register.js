@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { register } from '../services/auth.service';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../context/auth.context';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../components/MyTextInput';
@@ -7,6 +7,8 @@ import MyTextInput from '../components/MyTextInput';
 const Register = (props) => {
   const [message, setMessage] = useState('');
   const [successful, setSuccessful] = useState(false);
+
+  const { register } = useContext(AuthContext);
 
   return (
     <section className="register">
