@@ -14,7 +14,7 @@ Happy Hour allows users to search their favorite drink using the CocktailDB API.
 
 `npm start`
 
-** Check out the live app on [Heroku](https://react-socialmeds-client.herokuapp.com/)
+** Check out the live app on [Heroku](https://happy-hour-client.herokuapp.com/)
 
 ![homepage](public/home_page.png)
 
