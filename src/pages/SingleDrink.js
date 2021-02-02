@@ -80,10 +80,13 @@ function SingleDrink() {
       try {
         console.log(drink.name);
         const response = await axios.get(
-          `https://www.googleapis.com/youtube/v3/search?key=YT_API_KEY=&type=video&part=snippet&maxResults=3&q=how+to+make+${drink.name}+cocktail`
+          `http://localhost:5000/api/drink/videos?name=${drink.name}`
         );
+        // console.log(response);
         const videoIds = response.data.items.map((item) => item.id.videoId);
+        // console.log(videoIds);
         setYouTubeVideoIds(videoIds);
+        // console.log(response);
       } catch (error) {
         console.log(error);
       }
@@ -145,32 +148,32 @@ function SingleDrink() {
                 </span>
                 {ingredients.map((item, idx) => {
                   return item ? (
-                    <>
-                      <span key={idx} className="details__ingredients">
-                        [{item} - {measurements[idx]}] &nbsp;
-                      </span>
-                    </>
+                    <span key={idx} className="details__ingredients">
+                      [{item} - {measurements[idx]}] &nbsp;
+                    </span>
                   ) : null;
                 })}
               </div>
               <div>
                 <h2 className="mt-3 details__subtitle">
-                  "How To Make {name}" Instructional Videos
+                  "How To Make {name} Cocktail" Instructional Videos
                 </h2>
                 <hr />
-                {/* <div className="details__videos-container">
-                  {youTubeVideoIds &&
-                    youTubeVideoIds.map((videoId) => {
-                      return (
-                        <iframe
-                          className="details__video"
-                          key={videoId}
-                          src={`http://www.youtube.com/embed/${videoId}`}
-                          allowFullScreen
-                        ></iframe>
-                      );
-                    })}
-                </div> */}
+                <div className="details__videos-container">
+                  <div className="row">
+                    {youTubeVideoIds &&
+                      youTubeVideoIds.map((videoId) => {
+                        return (
+                          <iframe
+                            className="details__video col-lg-6"
+                            key={videoId}
+                            src={`http://www.youtube.com/embed/${videoId}`}
+                            allowFullScreen
+                          ></iframe>
+                        );
+                      })}
+                  </div>
+                </div>
               </div>
 
               <Link to="/" className="btn btn-primary mt-3">

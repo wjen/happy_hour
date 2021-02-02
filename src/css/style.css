@@ -242,10 +242,10 @@ h3 {
   font-size: var(--fs-h3);
 }
 
-.details__videos-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.details__video {
+  padding: 10px 10px;
+  margin: 0;
+  border: none;
 }
 
 .details .drink-data {
