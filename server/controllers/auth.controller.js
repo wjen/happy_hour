@@ -5,19 +5,21 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 exports.signup = (req, res) => {
-  console.log('signup server');
+  
+  // Create a new user
   const user = new User({
     username: req.body.username,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
   });
 
+  // Save user and handle errrors
   user.save((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
       return;
     }
-
+    // Assign user to role
     if (req.body.roles) {
       Role.find(
         {
@@ -41,6 +43,7 @@ exports.signup = (req, res) => {
         }
       );
     } else {
+      // Assign new user a role of user by default
       Role.findOne({ name: 'user' }, (err, role) => {
         if (err) {
           res.status(500).send({ message: err });
@@ -62,6 +65,7 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
+  // Search for user in database
   User.findOne({
     username: req.body.username,
   })
@@ -77,6 +81,7 @@ exports.signin = (req, res) => {
         return res.status(404).send({ message: 'User Not found.' });
       }
 
+      // Compare passwords to sign in
       const passwordIsValid = bcrypt.compareSync(
         req.body.password,
         user.password
@@ -89,6 +94,7 @@ exports.signin = (req, res) => {
         });
       }
 
+      // Create token on succesful sign in
       const token = jwt.sign({ id: user.id }, process.env.SESSION_SECRET, {
         expiresIn: 86400, // 24 hours
       });
@@ -98,6 +104,8 @@ exports.signin = (req, res) => {
       for (let i = 0; i < user.roles.length; i++) {
         authorities.push('ROLE_' + user.roles[i].name.toUpperCase());
       }
+
+      // Send back user and info and token
       res.status(200).send({
         id: user._id,
         username: user.username,

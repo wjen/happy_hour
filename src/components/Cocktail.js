@@ -22,9 +22,6 @@ function Cocktail({ id, name, image, ingredients, info, glass }) {
           >
             Details
           </Link>
-          <button className="btn btn-outline-info btn-lg card__modal__buttons">
-            Add to Favorites
-          </button>
         </div>
       </div>
 

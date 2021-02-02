@@ -1,8 +1,10 @@
 const User = require('../models/user.model');
 const ROLES = ['user', 'admin'];
 
+// Validation for new user registrations
+
 const checkDuplicateUsernameOrEmail = (req, res, next) => {
-  // Username
+  // Check for usernames already existing in database
   User.findOne({
     username: req.body.username,
   }).exec((err, user) => {
@@ -16,7 +18,7 @@ const checkDuplicateUsernameOrEmail = (req, res, next) => {
       return;
     }
 
-    // Email
+    // Check for email already existing in database
     User.findOne({
       email: req.body.email,
     }).exec((err, user) => {
@@ -35,6 +37,7 @@ const checkDuplicateUsernameOrEmail = (req, res, next) => {
   });
 };
 
+// Check to see if user is trying to sign up with a role not defined in database
 const checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {
     for (let i = 0; i < req.body.roles.length; i++) {

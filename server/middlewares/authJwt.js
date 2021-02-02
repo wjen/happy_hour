@@ -3,6 +3,7 @@ require('dotenv').config();
 const User = require('../models/user.model');
 const Role = require('../models/role.model');
 
+// Verify a token has been provided, otherwise don't allow access
 const verifyToken = (req, res, next) => {
   let token = req.headers['x-access-token'];
 
@@ -19,6 +20,7 @@ const verifyToken = (req, res, next) => {
   });
 };
 
+// Check to see if user is admin
 const isAdmin = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
     if (err) {

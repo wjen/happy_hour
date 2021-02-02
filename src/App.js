@@ -24,8 +24,12 @@ function App() {
         <AuthRoute path="/register" component={Register} />
         <AuthRoute path="/login" component={Login} />
 
+        {/* Priave Routes redirects non logged in users back to login */}
         <PrivateRoutes path="/profile" component={Profile} />
+
         <Route path="/admin/users" component={Users}></Route>
+
+        {/* Return for all other 404s */}
         <Route path="*" component={Error}></Route>
       </Switch>
     </Router>

@@ -1,5 +1,6 @@
 const User = require('../models/user.model');
 
+// Get a list of users for admin dashboard
 exports.getAllUsers = (req, res) => {
   User.find({})
     .populate('roles', '-__v')

@@ -2,12 +2,8 @@ const createError = require('http-errors');
 const express = require('express');
 require('dotenv').config();
 const mongoose = require('mongoose');
-const router = require('./routes/user.js');
 const cors = require('cors');
 const app = express();
-const passport = require('passport');
-const session = require('express-session');
-const path = require('path');
 const Role = require('./models/role.model.js');
 const port = process.env.PORT || 5000;
 
@@ -17,21 +13,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-    cookie: { secure: false },
-  })
-);
-app.use(passport.initialize());
-
 // use express router
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 require('./routes/drink.routes')(app);
-// app.use(router);
 
 // set up mongodb connection with mongoose
 (async () => {
@@ -84,7 +69,6 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  console.log('using error handler in server.js');
   next(createError(404));
 });
 
