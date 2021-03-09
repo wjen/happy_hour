@@ -78,7 +78,6 @@ function SingleDrink() {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        console.log(drink.name);
         const response = await axios.get(
           `http://localhost:5000/api/drink/videos?name=${drink.name}`
         );
@@ -165,6 +164,7 @@ function SingleDrink() {
                       youTubeVideoIds.map((videoId) => {
                         return (
                           <iframe
+                            title={`${drink.name}/1`} 
                             className="details__video col-lg-6"
                             key={videoId}
                             src={`http://www.youtube.com/embed/${videoId}`}

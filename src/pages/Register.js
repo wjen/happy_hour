@@ -1,14 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../context/auth.context';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../components/MyTextInput';
 
 const Register = (props) => {
-  const [message, setMessage] = useState('');
-  const [successful, setSuccessful] = useState(false);
 
-  const { register } = useContext(AuthContext);
+  const { register, message, setMessage, successful, setSuccessful } = useContext(AuthContext);
 
   return (
     <section className="register">
@@ -35,6 +33,7 @@ const Register = (props) => {
                     console.log(response);
                     setSubmitting(false);
                     setSuccessful(true);
+                    props.history.push('/login');
                     setMessage(response.data.message);
                   },
                   (error) => {
@@ -52,6 +51,7 @@ const Register = (props) => {
               }}
             >
               <Form>
+              {/* Flash Message  */}
                 {message && (
                   <div
                     className={
@@ -64,7 +64,7 @@ const Register = (props) => {
                 )}
                 <MyTextInput label="Username" name="username" type="text" />
                 <MyTextInput label="Email" name="email" type="email" />
-                <MyTextInput label="Password" name="password" type="text" />
+                <MyTextInput label="Password" name="password" type="password" />
                 <button type="submit" className="btn btn-info">
                   Register
                 </button>

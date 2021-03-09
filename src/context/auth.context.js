@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+
 const API_URL = 'http://localhost:5000/api/auth/';
 
 const AuthContext = createContext();
@@ -21,23 +22,24 @@ if (localStorage.getItem('user')) {
   } else {
     initialState = JSON.parse(localStorage.getItem('user'));
   }
-  // server sends
-  // res.status(200).send({
-  //   id: user._id,
-  //   username: user.username,
-  //   email: user.email,
-  //   roles: authorities,
-  //   accessToken: token,
-  // });
+
 }
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(initialState);
+  const [message, setMessage] = useState('');
+  const [successful, setSuccessful] = useState(false);
 
   const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem('user'));
   };
 
+  if (message) {
+    setTimeout( () => {
+      setMessage('');
+      setSuccessful(false);
+    }, 3000)
+  }
   const login = async (username, password) => {
     const response = await axios.post(`${API_URL}signin`, {
       username,
@@ -66,7 +68,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, register, login, logOut, getCurrentUser }}
+      value={{ user, register, login, logOut, getCurrentUser, message, setMessage, successful, setSuccessful }}
     >
       {children}
     </AuthContext.Provider>

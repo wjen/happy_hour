@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { AuthContext } from '../context/auth.context';
 
@@ -21,9 +21,9 @@ function Navbar() {
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
-          <Link to="/" className="navbar-brand">
+          <NavLink to="/" className="navbar-brand">
             <i className="fas fa-cocktail"></i>Happy Hour
-          </Link>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -38,25 +38,25 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link to="/about" className="nav-link">
+                <NavLink to="/about" className="nav-link" activeClassName="active">
                   About
-                </Link>
+                </NavLink>
               </li>
               {showAdminBoard && (
                 <>
                   <li className="nav-item">
-                    <Link to="/admin/users" className="nav-link">
+                    <NavLink to="/admin/users" className="nav-link" activeClassName="active">
                       Admin-Dashboard
-                    </Link>
+                    </NavLink>
                   </li>
                 </>
               )}
               {user ? (
                 <>
                   <li className="nav-item">
-                    <Link to="/profile" className="nav-link">
+                    <NavLink to="/profile" className="nav-link" activeClassName="active">
                       Profile
-                    </Link>
+                    </NavLink>
                   </li>
 
                   <li className="nav-item">
@@ -72,14 +72,14 @@ function Navbar() {
               ) : (
                 <>
                   <li className="nav-item">
-                    <Link to="/register" className="nav-link">
+                    <NavLink to="/register" className="nav-link" activeClassName="active">
                       Register
-                    </Link>
+                    </NavLink>
                   </li>
                   <li className="nav-item">
-                    <Link to="/login" className="nav-link" href="#">
+                    <NavLink to="/login" className="nav-link"  activeClassName="active">
                       Login
-                    </Link>
+                    </NavLink>
                   </li>
                 </>
               )}

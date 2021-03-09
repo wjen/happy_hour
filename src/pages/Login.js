@@ -6,8 +6,7 @@ import * as Yup from 'yup';
 import MyTextInput from '../components/MyTextInput';
 
 const Login = (props) => {
-  const [message, setMessage] = useState('');
-  const { login } = useContext(AuthContext);
+  const { login, message, setMessage, successful } = useContext(AuthContext);
   return (
     <section className="register">
       <div className="container">
@@ -44,12 +43,17 @@ const Login = (props) => {
             >
               <Form>
                 {message && (
-                  <div className="alert alert-danger mt-3" role="alert">
+                  <div
+                    className={
+                      successful ? 'alert alert-success' : 'alert alert-danger'
+                    }
+                    role="alert"
+                  >
                     {message}
                   </div>
                 )}
                 <MyTextInput label="Username" name="username" type="text" />
-                <MyTextInput label="Password" name="password" type="text" />
+                <MyTextInput label="Password" name="password" type="password" />
                 <button type="submit" className="btn btn-info">
                   Login
                 </button>
