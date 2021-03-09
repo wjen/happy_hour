@@ -5,8 +5,7 @@ import * as Yup from 'yup';
 import MyTextInput from '../components/MyTextInput';
 
 const Register = (props) => {
-
-  const { register, message, setMessage, successful, setSuccessful } = useContext(AuthContext);
+  const { register, alert, setAlert } = useContext(AuthContext);
 
   return (
     <section className="register">
@@ -32,9 +31,12 @@ const Register = (props) => {
                   (response) => {
                     console.log(response);
                     setSubmitting(false);
-                    setSuccessful(true);
                     props.history.push('/login');
-                    setMessage(response.data.message);
+                    setAlert({
+                      show: true,
+                      msg: response.data.message,
+                      type: 'success',
+                    });
                   },
                   (error) => {
                     console.log(error.response.data.message);
@@ -44,22 +46,16 @@ const Register = (props) => {
                       error.response.data.message;
 
                     setSubmitting(false);
-                    setSuccessful(false);
-                    setMessage(resMessage);
+                    setAlert({ show: true, msg: resMessage, type: 'danger' });
                   }
                 );
               }}
             >
               <Form>
-              {/* Flash Message  */}
-                {message && (
-                  <div
-                    className={
-                      successful ? 'alert alert-success' : 'alert alert-danger'
-                    }
-                    role="alert"
-                  >
-                    {message}
+                {/* Flash Message  */}
+                {alert.show && (
+                  <div className={`alert alert-${alert.type}`} role="alert">
+                    {alert.msg}
                   </div>
                 )}
                 <MyTextInput label="Username" name="username" type="text" />

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../context/auth.context';
 
 import { Formik, Form } from 'formik';
@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import MyTextInput from '../components/MyTextInput';
 
 const Login = (props) => {
-  const { login, message, setMessage, successful } = useContext(AuthContext);
+  const { login, alert, setAlert } = useContext(AuthContext);
   return (
     <section className="register">
       <div className="container">
@@ -36,20 +36,15 @@ const Login = (props) => {
 
                     setSubmitting(false);
 
-                    setMessage(resMessage);
+                    setAlert({ show: true, msg: resMessage, type: 'danger' });
                   }
                 );
               }}
             >
               <Form>
-                {message && (
-                  <div
-                    className={
-                      successful ? 'alert alert-success' : 'alert alert-danger'
-                    }
-                    role="alert"
-                  >
-                    {message}
+                {alert.show && (
+                  <div className={`alert alert-${alert.type}`} role="alert">
+                    {alert.msg}
                   </div>
                 )}
                 <MyTextInput label="Username" name="username" type="text" />

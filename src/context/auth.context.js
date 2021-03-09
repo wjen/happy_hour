@@ -25,9 +25,12 @@ if (localStorage.getItem('user')) {
 }
 
 const AuthProvider = ({ children }) => {
+  const [alert, setAlert] = useState({
+    show: false,
+    msg: '',
+    type: '',
+  });
   const [user, setUser] = useState(initialState);
-  const [message, setMessage] = useState('');
-  const [successful, setSuccessful] = useState(false);
 
   const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem('user'));
@@ -35,12 +38,11 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setMessage('');
-      setSuccessful(false);
+      setAlert({ show: false, msg: '', type: '' });
     }, 3000);
 
     return () => clearTimeout(timeout);
-  }, [message]);
+  }, [alert]);
 
   const login = async (username, password) => {
     const response = await axios.post(`${API_URL}signin`, {
@@ -76,10 +78,8 @@ const AuthProvider = ({ children }) => {
         login,
         logOut,
         getCurrentUser,
-        message,
-        setMessage,
-        successful,
-        setSuccessful,
+        alert,
+        setAlert,
       }}
     >
       {children}
