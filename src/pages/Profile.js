@@ -3,7 +3,6 @@ import { AuthContext } from '../context/auth.context';
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
-  // const currentUser = getCurrentUser();
   const currentUser = user;
   console.log(user);
   return (

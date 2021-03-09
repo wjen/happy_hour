@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
@@ -16,13 +16,12 @@ if (localStorage.getItem('user')) {
     JSON.parse(localStorage.getItem('user')).accessToken
   );
 
-  // get milliseconds and remove if expired
+  // get milliseconds and remove if expired else set initial state to user
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem('user');
   } else {
     initialState = JSON.parse(localStorage.getItem('user'));
   }
-
 }
 
 const AuthProvider = ({ children }) => {
@@ -34,12 +33,15 @@ const AuthProvider = ({ children }) => {
     return JSON.parse(localStorage.getItem('user'));
   };
 
-  if (message) {
-    setTimeout( () => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
       setMessage('');
       setSuccessful(false);
-    }, 3000)
-  }
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, [message]);
+
   const login = async (username, password) => {
     const response = await axios.post(`${API_URL}signin`, {
       username,
@@ -68,7 +70,17 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, register, login, logOut, getCurrentUser, message, setMessage, successful, setSuccessful }}
+      value={{
+        user,
+        register,
+        login,
+        logOut,
+        getCurrentUser,
+        message,
+        setMessage,
+        successful,
+        setSuccessful,
+      }}
     >
       {children}
     </AuthContext.Provider>

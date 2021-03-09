@@ -2,6 +2,7 @@ const { authJwt } = require('../middlewares');
 const userController = require('../controllers/user.controller');
 
 module.exports = function (app) {
+  // Set up response headers
   app.use(function (req, res, next) {
     res.header(
       'Access-Control-Allow-Headers',
@@ -9,8 +10,6 @@ module.exports = function (app) {
     );
     next();
   });
-
-  // app.get('/api/user', [authJwt.verifyToken], userController.userBoard);
 
   app.get(
     '/api/admin/users',
